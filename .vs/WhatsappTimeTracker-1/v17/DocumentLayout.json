@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\storage.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\storage.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\components\\EmployeeTable.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:client\\src\\components\\EmployeeTable.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\mappers\\employee.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:client\\src\\mappers\\employee.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\routes.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\init-database.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\init-database.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\index.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\db.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\db.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\vite.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\vite.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\storage.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\storage.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\pages\\Employees.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:client\\src\\pages\\Employees.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\shared\\schema.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -30,24 +58,115 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "employee.ts",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\mappers\\employee.ts",
+              "RelativeDocumentMoniker": "client\\src\\mappers\\employee.ts",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\mappers\\employee.ts",
+              "RelativeToolTip": "client\\src\\mappers\\employee.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:40:30.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "init-database.ts",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\init-database.ts",
+              "RelativeDocumentMoniker": "server\\init-database.ts",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\init-database.ts",
+              "RelativeToolTip": "server\\init-database.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:33:44.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "vite.ts",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\vite.ts",
+              "RelativeDocumentMoniker": "server\\vite.ts",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\vite.ts",
+              "RelativeToolTip": "server\\vite.ts",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:33:20.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "routes.ts",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\routes.ts",
+              "RelativeDocumentMoniker": "server\\routes.ts",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\routes.ts",
+              "RelativeToolTip": "server\\routes.ts",
+              "ViewState": "AgIAABoAAAAAAAAAAAArwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:33:12.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "storage.ts",
               "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\storage.ts",
               "RelativeDocumentMoniker": "server\\storage.ts",
               "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\storage.ts",
               "RelativeToolTip": "server\\storage.ts",
-              "ViewState": "AgIAAKMAAAAAAAAAAAAcwOYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAqwD4AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-06-27T09:37:01.845Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "EmployeeTable.tsx",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\components\\EmployeeTable.tsx",
+              "RelativeDocumentMoniker": "client\\src\\components\\EmployeeTable.tsx",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\components\\EmployeeTable.tsx",
+              "RelativeToolTip": "client\\src\\components\\EmployeeTable.tsx",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAcwGkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:09:52.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Employees.tsx",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\pages\\Employees.tsx",
+              "RelativeDocumentMoniker": "client\\src\\pages\\Employees.tsx",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\client\\src\\pages\\Employees.tsx",
+              "RelativeToolTip": "client\\src\\pages\\Employees.tsx",
+              "ViewState": "AgIAAGIBAAAAAAAAAAAmwHYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T10:09:40.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index.ts",
+              "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\index.ts",
+              "RelativeDocumentMoniker": "server\\index.ts",
+              "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\index.ts",
+              "RelativeToolTip": "server\\index.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-06-27T09:48:28.468Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "schema.ts",
               "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\shared\\schema.ts",
               "RelativeDocumentMoniker": "shared\\schema.ts",
@@ -60,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "drizzle.config.ts",
               "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\drizzle.config.ts",
               "RelativeDocumentMoniker": "drizzle.config.ts",
@@ -73,20 +192,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "db.ts",
               "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\db.ts",
               "RelativeDocumentMoniker": "server\\db.ts",
               "ToolTip": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\server\\db.ts",
               "RelativeToolTip": "server\\db.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2025-06-27T07:59:32.493Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": ".env",
               "DocumentMoniker": "C:\\Users\\jtalm\\Desktop\\WhatsappTimeTracker-1 (1)\\WhatsappTimeTracker-1\\.env",
               "RelativeDocumentMoniker": ".env",

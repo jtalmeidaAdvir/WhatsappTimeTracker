@@ -1,3 +1,4 @@
+﻿import { mapEmployee } from '../client/src/mappers/employee';
 import type { Express } from "express";
 import {
     type Employee,
@@ -10,8 +11,7 @@ import {
     type Setting,
     type InsertSetting
 } from "@shared/schema";
-import { pool } from './db';
-import sql from 'mssql';
+import { db } from './db';
 
 export interface IStorage {
     getEmployee(id: number): Promise<Employee | undefined>;
@@ -40,47 +40,65 @@ export interface IStorage {
 
 export class DatabaseStorage implements IStorage {
     async getEmployee(id: number): Promise<Employee | undefined> {
-        const result = await pool.request().input("id", sql.Int, id).query("SELECT * FROM employees WHERE id = @id");
-        return result.recordset[0];
+        const stmt = db.prepare("SELECT * FROM employees WHERE id = ?");
+        return stmt.get(id) as Employee | undefined;
     }
 
     async getEmployeeByPhone(phone: string): Promise<Employee | undefined> {
-        const result = await pool.request().input("phone", sql.VarChar, phone).query("SELECT * FROM employees WHERE phone = @phone");
-        return result.recordset[0];
+        const stmt = db.prepare("SELECT * FROM employees WHERE phone = ?");
+        return stmt.get(phone) as Employee | undefined;
     }
 
     async createEmployee(employee: InsertEmployee): Promise<Employee> {
-        const result = await pool.request()
-            .input("name", sql.VarChar, employee.name)
-            .input("phone", sql.VarChar, employee.phone)
-            .input("isActive", sql.Bit, employee.isActive)
-            .query("INSERT INTO employees (name, phone, isActive) OUTPUT INSERTED.* VALUES (@name, @phone, @isActive)");
-        return result.recordset[0];
+        try {
+            const stmt = db.prepare(`
+        INSERT INTO employees (name, phone, department, is_active) 
+        VALUES (?, ?, ?, 1)
+    `);
+            const result = stmt.run(employee.name, employee.phone, employee.department);
+            const getStmt = db.prepare("SELECT id, name, phone, department, is_active FROM employees WHERE id = ?");
+            return mapEmployee(getStmt.get(result.lastInsertRowid));
+        } catch (err) {
+            console.error("Erro ao criar funcionário:", err);
+            throw err;
+        }
     }
 
-    async updateEmployee(id: number, employee: Partial<InsertEmployee>): Promise<Employee | undefined> {
-        const fields = [];
-        const request = pool.request().input("id", sql.Int, id);
-        if (employee.name) {
-            fields.push("name = @name");
-            request.input("name", sql.VarChar, employee.name);
-        }
-        if (employee.phone) {
-            fields.push("phone = @phone");
-            request.input("phone", sql.VarChar, employee.phone);
-        }
-        if (employee.isActive !== undefined) {
-            fields.push("isActive = @isActive");
-            request.input("isActive", sql.Bit, employee.isActive);
-        }
-        const query = `UPDATE employees SET ${fields.join(", ")} OUTPUT INSERTED.* WHERE id = @id`;
-        const result = await request.query(query);
-        return result.recordset[0];
-    }
 
     async getAllEmployees(): Promise<Employee[]> {
-        const result = await pool.request().query("SELECT * FROM employees ORDER BY name");
-        return result.recordset;
+        const stmt = db.prepare("SELECT * FROM employees ORDER BY is_active DESC, name");
+        return stmt.all() as Employee[];
+    }
+
+    async updateEmployee(id: number, data: Partial<InsertEmployee>): Promise<Employee | undefined> {
+        const fields = [];
+        const values = [];
+
+        if (data.name !== undefined) {
+            fields.push("name = ?");
+            values.push(data.name);
+        }
+        if (data.phone !== undefined) {
+            fields.push("phone = ?");
+            values.push(data.phone);
+        }
+        if (data.department !== undefined) {
+            fields.push("department = ?");
+            values.push(data.department);
+        }
+        if (data.isActive !== undefined) {
+            fields.push("is_active = ?");
+            values.push(data.isActive ? 1 : 0);
+        }
+
+        if (fields.length === 0) return undefined;
+
+        values.push(id);
+        const stmt = db.prepare(`UPDATE employees SET ${fields.join(", ")} WHERE id = ?`);
+        stmt.run(...values);
+
+        const getStmt = db.prepare("SELECT * FROM employees WHERE id = ?");
+        return getStmt.get(id) as Employee | undefined;
     }
 
     async getEmployeesWithStatus(): Promise<EmployeeWithStatus[]> {
@@ -94,10 +112,10 @@ export class DatabaseStorage implements IStorage {
             let lastActionTime;
             if (latest) {
                 lastAction = latest.type;
-                lastActionTime = latest.timestamp;
+                lastActionTime = new Date(latest.timestamp);
                 if (latest.type === 'entrada' || latest.type === 'volta') {
                     currentStatus = 'trabalhando';
-                    clockInTime = latest.timestamp.toTimeString().slice(0, 5);
+                    clockInTime = new Date(latest.timestamp).toTimeString().slice(0, 5);
                 } else if (latest.type === 'pausa') {
                     currentStatus = 'pausa';
                 } else if (latest.type === 'saida') {
@@ -110,71 +128,79 @@ export class DatabaseStorage implements IStorage {
     }
 
     async createAttendanceRecord(record: InsertAttendanceRecord): Promise<AttendanceRecord> {
-        const result = await pool.request()
-            .input("employeeId", sql.Int, record.employeeId)
-            .input("type", sql.VarChar, record.type)
-            .input("timestamp", sql.DateTime, record.timestamp)
-            .query("INSERT INTO attendanceRecords (employeeId, type, timestamp) OUTPUT INSERTED.* VALUES (@employeeId, @type, @timestamp)");
-        return result.recordset[0];
+        const stmt = db.prepare(`
+            INSERT INTO attendance_records (employee_id, type, timestamp) 
+            VALUES (?, ?, ?)
+        `);
+        const result = stmt.run(record.employeeId, record.type, record.timestamp.toISOString());
+
+        const getStmt = db.prepare("SELECT * FROM attendance_records WHERE id = ?");
+        return getStmt.get(result.lastInsertRowid) as AttendanceRecord;
     }
 
     async getAttendanceRecords(employeeId?: number, date?: Date): Promise<AttendanceRecord[]> {
-        const request = pool.request();
-        let query = "SELECT * FROM attendanceRecords";
+        let query = "SELECT * FROM attendance_records";
         const conditions = [];
+        const params = [];
+
         if (employeeId !== undefined) {
-            conditions.push("employeeId = @employeeId");
-            request.input("employeeId", sql.Int, employeeId);
+            conditions.push("employee_id = ?");
+            params.push(employeeId);
         }
         if (date) {
             const start = new Date(date);
             start.setHours(0, 0, 0, 0);
             const end = new Date(date);
             end.setHours(23, 59, 59, 999);
-            conditions.push("timestamp >= @start AND timestamp <= @end");
-            request.input("start", sql.DateTime, start);
-            request.input("end", sql.DateTime, end);
+            conditions.push("timestamp >= ? AND timestamp <= ?");
+            params.push(start.toISOString(), end.toISOString());
         }
         if (conditions.length > 0) query += " WHERE " + conditions.join(" AND ");
         query += " ORDER BY timestamp DESC";
-        const result = await request.query(query);
-        return result.recordset;
+
+        const stmt = db.prepare(query);
+        return stmt.all(...params) as AttendanceRecord[];
     }
 
     async getLatestAttendanceRecord(employeeId: number): Promise<AttendanceRecord | undefined> {
-        const result = await pool.request()
-            .input("employeeId", sql.Int, employeeId)
-            .query("SELECT TOP 1 * FROM attendanceRecords WHERE employeeId = @employeeId ORDER BY timestamp DESC");
-        return result.recordset[0];
+        const stmt = db.prepare(`
+            SELECT * FROM attendance_records 
+            WHERE employee_id = ? 
+            ORDER BY timestamp DESC 
+            LIMIT 1
+        `);
+        return stmt.get(employeeId) as AttendanceRecord | undefined;
     }
 
     async createWhatsappMessage(message: InsertWhatsappMessage): Promise<WhatsappMessage> {
-        const result = await pool.request()
-            .input("sender", sql.VarChar, message.sender)
-            .input("message", sql.VarChar, message.message)
-            .input("timestamp", sql.DateTime, message.timestamp)
-            .input("processed", sql.Bit, message.processed)
-            .query("INSERT INTO whatsappMessages (sender, message, timestamp, processed) OUTPUT INSERTED.* VALUES (@sender, @message, @timestamp, @processed)");
-        return result.recordset[0];
+        const stmt = db.prepare(`
+            INSERT INTO whatsapp_messages (phone, message, timestamp, processed) 
+            VALUES (?, ?, ?, ?)
+        `);
+        const result = stmt.run(
+            message.sender,
+            message.message,
+            message.timestamp.toISOString(),
+            message.processed ? 1 : 0
+        );
+
+        const getStmt = db.prepare("SELECT * FROM whatsapp_messages WHERE id = ?");
+        return getStmt.get(result.lastInsertRowid) as WhatsappMessage;
     }
 
     async getUnprocessedMessages(): Promise<WhatsappMessage[]> {
-        const result = await pool.request().query("SELECT * FROM whatsappMessages WHERE processed = 0 ORDER BY timestamp");
-        return result.recordset;
+        const stmt = db.prepare("SELECT * FROM whatsapp_messages WHERE processed = 0 ORDER BY timestamp");
+        return stmt.all() as WhatsappMessage[];
     }
 
     async markMessageAsProcessed(id: number, response: string): Promise<void> {
-        await pool.request()
-            .input("id", sql.Int, id)
-            .input("response", sql.VarChar, response)
-            .query("UPDATE whatsappMessages SET processed = 1, response = @response WHERE id = @id");
+        const stmt = db.prepare("UPDATE whatsapp_messages SET processed = 1, response = ? WHERE id = ?");
+        stmt.run(response, id);
     }
 
     async getRecentMessages(limit = 10): Promise<WhatsappMessage[]> {
-        const result = await pool.request()
-            .input("limit", sql.Int, limit)
-            .query("SELECT TOP (@limit) * FROM whatsappMessages ORDER BY timestamp DESC");
-        return result.recordset;
+        const stmt = db.prepare("SELECT * FROM whatsapp_messages ORDER BY timestamp DESC LIMIT ?");
+        return stmt.all(limit) as WhatsappMessage[];
     }
 
     async getStats(): Promise<{
@@ -183,47 +209,46 @@ export class DatabaseStorage implements IStorage {
         onBreak: number;
         messagesProcessed: number;
     }> {
-        const activeRes = await pool.request().query("SELECT COUNT(*) as count FROM employees WHERE isActive = 1");
-        const messagesRes = await pool.request().query("SELECT COUNT(*) as count FROM whatsappMessages WHERE processed = 1");
+        const activeStmt = db.prepare("SELECT COUNT(*) as count FROM employees WHERE is_active = 1");
+        const messagesStmt = db.prepare("SELECT COUNT(*) as count FROM whatsapp_messages WHERE processed = 1");
+
+        const activeRes = activeStmt.get() as { count: number };
+        const messagesRes = messagesStmt.get() as { count: number };
+
         const employeesWithStatus = await this.getEmployeesWithStatus();
         const presentToday = employeesWithStatus.filter(e => e.currentStatus === 'trabalhando' || e.currentStatus === 'pausa').length;
         const onBreak = employeesWithStatus.filter(e => e.currentStatus === 'pausa').length;
+
         return {
-            activeEmployees: activeRes.recordset[0].count,
+            activeEmployees: activeRes.count,
             presentToday,
             onBreak,
-            messagesProcessed: messagesRes.recordset[0].count
+            messagesProcessed: messagesRes.count
         };
     }
 
     async getSetting(key: string): Promise<Setting | undefined> {
-        const result = await pool.request().input("key", sql.VarChar, key).query("SELECT * FROM settings WHERE key = @key");
-        return result.recordset[0];
+        const stmt = db.prepare("SELECT * FROM settings WHERE key = ?");
+        return stmt.get(key) as Setting | undefined;
     }
 
     async setSetting(key: string, value: string, type = "string"): Promise<Setting> {
         const existing = await this.getSetting(key);
         if (existing) {
-            const result = await pool.request()
-                .input("key", sql.VarChar, key)
-                .input("value", sql.VarChar, value)
-                .input("type", sql.VarChar, type)
-                .input("updatedAt", sql.DateTime, new Date())
-                .query("UPDATE settings SET value = @value, type = @type, updatedAt = @updatedAt OUTPUT INSERTED.* WHERE key = @key");
-            return result.recordset[0];
+            const stmt = db.prepare("UPDATE settings SET value = ?, type = ?, updated_at = ? WHERE key = ?");
+            stmt.run(value, type, new Date().toISOString(), key);
         } else {
-            const result = await pool.request()
-                .input("key", sql.VarChar, key)
-                .input("value", sql.VarChar, value)
-                .input("type", sql.VarChar, type)
-                .query("INSERT INTO settings (key, value, type) OUTPUT INSERTED.* VALUES (@key, @value, @type)");
-            return result.recordset[0];
+            const stmt = db.prepare("INSERT INTO settings (key, value, type) VALUES (?, ?, ?)");
+            stmt.run(key, value, type);
         }
+
+        const getStmt = db.prepare("SELECT * FROM settings WHERE key = ?");
+        return getStmt.get(key) as Setting;
     }
 
     async getAllSettings(): Promise<Setting[]> {
-        const result = await pool.request().query("SELECT * FROM settings ORDER BY key");
-        return result.recordset;
+        const stmt = db.prepare("SELECT * FROM settings ORDER BY key");
+        return stmt.all() as Setting[];
     }
 }
 

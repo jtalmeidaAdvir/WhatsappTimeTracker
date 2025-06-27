@@ -1,28 +1,11 @@
-import sql from 'mssql';
-import dotenv from 'dotenv';
-dotenv.config();
+﻿import Database from 'better-sqlite3';
+import path from 'path';
 
-const config = {
-    server: process.env.DB_SERVER || 'localhost',
-    authentication: {
-        type: 'default',
-        options: {
-            userName: process.env.DB_USER || 'sa',
-            password: process.env.DB_PASSWORD || '1234',
-        }
-    },
-    options: {
-        encrypt: true,
-        trustServerCertificate: true,  // Ignora erro self-signed cert
-        database: process.env.DB_NAME || 'Advir',
-        port: Number(process.env.DB_PORT) || 1433,
-    }
-};
+// Create database file in project root
+const dbPath = path.join(process.cwd(), 'database.sqlite');
+export const db = new Database(dbPath);
 
-export const pool = new sql.ConnectionPool(config);
+// Enable WAL mode for better performance
+db.pragma('journal_mode = WAL');
 
-pool.connect().catch(err => {
-    console.error('Database connection error:', err);
-});
-
-export const db = pool;
+console.log('✅ Connected to SQLite database at:', dbPath);

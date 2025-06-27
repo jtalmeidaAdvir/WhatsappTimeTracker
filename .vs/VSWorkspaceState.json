@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\mappers",
+    "\\server"
   ],
   "PreviewInSolutionExplorer": false
 }
